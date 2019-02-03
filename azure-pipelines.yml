@@ -2,6 +2,8 @@
 # Start with a minimal pipeline that you can customize to build and deploy your code.
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
+variables:
+  CARGO_HOME: '$(system.defaultWorkingDirectory)/.cargo'
 
 trigger:
 - master
@@ -12,8 +14,7 @@ pool:
 steps:
 - script: |
     curl https://sh.rustup.rs -sSf | sh -s -- -y
-    source $HOME/.cargo/env
   displayName: 'Setup rust'
 - script: |
-    cargo build
+    $CARGO_HOME/bin/cargo build
   displayName: 'Build'
