@@ -1,4 +1,6 @@
-mod graph;
+extern crate pathrs;
+
+use pathrs::graph;
 
 fn main() {
     let mut adj_list = graph::AdjacencyList::new();
