@@ -10,7 +10,10 @@ pub struct AdjacencyList {
 
 impl AdjacencyList {
     pub fn new() -> AdjacencyList {
-        AdjacencyList { vertices: HashMap::new(), next_id: 0 }
+        AdjacencyList {
+            vertices: HashMap::new(),
+            next_id: 0,
+        }
     }
 
     pub fn add_vertex(&mut self) -> VertexDescriptor {
@@ -31,13 +34,19 @@ impl AdjacencyList {
     }
 
     pub fn adjacent(&self, from: VertexDescriptor, to: VertexDescriptor) -> bool {
-        let edge_set = self.vertices.get(&from).expect(&format!("vertex {} not found", from));
+        let edge_set = self
+            .vertices
+            .get(&from)
+            .expect(&format!("vertex {} not found", from));
         edge_set.contains(&to)
     }
 
     pub fn neighbours(&self, from: VertexDescriptor) -> Vec<VertexDescriptor> {
         let mut neighbours: Vec<VertexDescriptor> = Vec::new();
-        let edge_set = self.vertices.get(&from).expect(&format!("vertex {} not found", from));
+        let edge_set = self
+            .vertices
+            .get(&from)
+            .expect(&format!("vertex {} not found", from));
         for &vertex in edge_set {
             neighbours.push(vertex);
         }
